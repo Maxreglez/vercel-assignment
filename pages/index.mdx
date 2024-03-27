@@ -107,12 +107,12 @@ A simple case would be to have a personalized static page for every country. Now
 
 ## 5. Responding to a customer requesting help with a build issue on a framework or technology that I've not seen before. How I would begin to troubleshoot this and what I would ask the customer.
 
-I would look through both internal and external documents related to the framework/technology, as well as look up specific build issues online to see if others have faced this and if there are any solutions to it. If I get stuck, I would ask colleagues who have specialist knowledge of the framework/technology.
-
 I would ask the customer for screenshots of the error code:
 
 *Could you provide the exact error message you are seeing or a screenshot of the build issue?*
 *Could you also describe to me the steps that led to the error so that we can recreate the problem.*
+
+At the same time, I would research the technology and common problems and ask for relevant code snippets or protocols if necessary. I will also search community forums for similar issues and their solutions. If I get stuck, I would ask colleagues who have expertise on the framework/technology.
 
 If I have found specific solutions for specific environments or versions of frameworks/software based on my initial troubleshooting, I would share this with the customer.
 
@@ -124,11 +124,11 @@ If I have found specific solutions for specific environments or versions of fram
 >
 > Max here from the Vercel’s support team.
 >
-> I completely understand your frustration and am very sorry for the inconvenience caused by this issue. I know answering a lot of questions can be tedious, especially if you've spent a lot of time getting it to work.
+> I understand your frustration and regret the inconvenience caused by this issue and am here to help you. However, in order to help you effectively, I need more information about the problem, i know that answering many questions can be tedious, especially after spending a lot of time trying to get it to work.
 >
-> However, to ensure that we can conduct a thorough investigation on our part and resolve the issue efficiently, we need some more details about the issue.
+> Please bear with me as we work together to resolve this issue. Your cooperation in providing additional details will greatly speed up the troubleshooting process and ensure a successful resolution.
 >
-> Rest assured, once we have more details, we will dig deeper into the matter and get to the bottom of it for you.
+> Rest assured, as soon as we have more details, we will dig deeper into the matter and get to the bottom of it for you.
 >
 > Best Regards,
 >
@@ -191,14 +191,15 @@ If I have found specific solutions for specific environments or versions of fram
 >
 > Vercel Preview Deployments are not indexed by search engines by default because the X-Robots-Tag HTTP header is set to noindex. When search engines attempt to crawl a page with this header present they will observe it and stop it from being indexed.
 >
->  If you are using a Custom Domain that is assigned to a non-Production Branch, however, the header X-Robots-Tag: noindex will not be set.. You can find an example on how to do that via Edge Middleware [here](https://vercel.com/templates/next.js/edge-functions-add-header).
+>  If you are using a Custom Domain that is assigned to a non-Production Branch, however, the header X-Robots-Tag: noindex will not be set.
+> You can find an example on how to do that via Edge Middleware [here](https://vercel.com/templates/next.js/edge-functions-add-header).
 >
-> You can confirm whether this header is present on your site by running the below CURL command in your operating system’s terminal, replacing the domain as needed:
+> To confirm the value of the X-Robots-Tag header, you can use the following curl (already available on most desktop devices) command in your terminal to check your Preview Deployment's headers:
 > ```
 > curl -I https://example.com/
 > ```
 >
-> If the header is present, you should see the following in the command output:
+> Amongst the output, you will find an X-Robots-Tag header after executing the curl command.
 > ```
 > x-robots-tag: noindex
 > ```
