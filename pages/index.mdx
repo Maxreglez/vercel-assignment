@@ -82,34 +82,37 @@ Get involved in platform development. For example, through conversations or meet
 
 Support teams often have really good insight into common customer issues, which is critical to developing a more customer-friendly and intuitive platform.
 
+Also i want to learn more about optimizing website performance, exploring new frontend frameworks and technologies.
+
 ## 3. How I solved a technical issue in a previous role and determined the solution was succesful
 
 During my current role, I had an issue where several customers complained that after changing the language of the site they were logged out again. Unfortunately we were unable to reproduce the problem.
 That's why I asked the customer to describe to us exactly the steps that led to the logout. In the meantime, of course, I searched more intensively for the problem and found that if you changed the language immediately after logging in, you would be redirected to the login page. I sent this to the relevant department with a precise description and also communicated to the customer that we had found the error and explained where the error was and which step he had to take so that it didn't happen again and that it would be the next step update is fixed.
+After the fix is deployed, i will inform the Customer that we deployed the fix and he confirmed that is fixed.
 
 ## 4. When I would choose to use Edge Functions, Serverless Functions, or Edge Middleware with Vercel
 
 ### Edge Functions
 
-I would use Edge Functions for simple functions that run on dynamic parts of the site after the site has already loaded, as they run after the cache is deployed. For example, I would use them to retrieve specific user data or perform dynamic rewrites. Edge functions tend to be much faster than serverless functions
+for simple functions that run on dynamic parts of the site after the site has already loaded, as they run after the cache is deployed. For example, I would use them to retrieve specific user data or perform dynamic rewrites. Edge functions tend to be much faster than serverless functions
 ### Serverless Functions
 
-I would choose to use serverless functions if a function is particularly resource intensive or if they need access to a part of the Node.js API. For example, I would probably use a serverless function if I was processing large amounts of data or making large API requests would edit.
+for more complex backend logic or APIs. For example, I would probably use a serverless function if I was processing large amounts of data or making large API requests would edit.
+
 ### Edge Middleware
 
-I would choose to use Edge Middleware to execute code that can be run before a request is received.
+to intercept and modify requests or responses at the edge, such as authentication or personalized pages.
 
 A simple case would be to have a personalized static page for every country. Now when a request comes in, look at the geo location data and redirect visitors to the personalized country page. Or maybe the site have an events section on the page. Send people to a personalized page with events near them.
 
 ## 5. Responding to a customer requesting help with a build issue on a framework or technology that I've not seen before. How I would begin to troubleshoot this and what I would ask the customer.
 
-
 I would look through both internal and external documents related to the framework/technology, as well as look up specific build issues online to see if others have faced this and if there are any solutions to it. If I get stuck, I would ask colleagues who have specialist knowledge of the framework/technology.
 
 I would ask the customer for screenshots of the error code:
 
-* Could you provide the exact error message you are seeing or a screenshot of the build issue?
-* Could you also describe to me the steps that led to the error so that we can recreate the problem.
+*Could you provide the exact error message you are seeing or a screenshot of the build issue?*
+*Could you also describe to me the steps that led to the error so that we can recreate the problem.*
 
 If I have found specific solutions for specific environments or versions of frameworks/software based on my initial troubleshooting, I would share this with the customer.
 
@@ -128,8 +131,8 @@ If I have found specific solutions for specific environments or versions of fram
 > Rest assured, as soon as we have further details, we will dig deeper into the issue and get to the bottom of it for you.
 >
 > Best Regards,
->
 > Max
+> Vercel Support Team
 
 ## 7. Responding to the customer asking to setup a redirect and justification
 
@@ -137,40 +140,40 @@ If I have found specific solutions for specific environments or versions of fram
 > Hey XXX,
 >
 > Max here from the Vercel’s support team.
-> This varies slightly depending on whether you want a permanent redirect or a temporary redirect. You should set this to “Permanent” if you intend for this redirect to remain indefinitely, or “Temporary” if you intend to either change or remove the redirect in the future. For more information about the different types of redirect status codes we support, see [here](https://vercel.com/docs/edge-network/redirects#redirect-status-codes).
 >
->If you want this to be a permanent redirect you should add the below code to your projects vercel.json config file:
+> Configuration-based redirects can be defined in framework-specific config file or in the vercel.json file, which is located in the root of your application. The vercel.json should contain a redirects field, which is an array of redirect rules. For more information on all available properties, see the project configuration docs.[here](https://vercel.com/docs/edge-network/redirects#redirect-status-codes).
+> When using Next.js, you do not need to use vercel.json. Instead, use the framework-native next.config.js to define configuration-based redirects.
 >```
-> {
->  "redirects": [
->    {
->      "source": "/blog",
->      "destination": "https://example.com"
->    }
+>  async redirects() {
+>      return [
+>        {
+>          source: '/blog',
+>          destination: 'https://example.com',
+>          permanent: true,
+>        },
+>  ]
+> }
+>```
+> This configuration will redirect any requests made to the "/blog" path to "https://example.com" with a 301 status code, indicating a permanent redirect.
+
+> If you want a temporary redirect you should add an additional line defining the permanent variable as false, for example:
+>```
+>  async redirects() {
+>      return [
+>        {
+>          source: '/blog',
+>          destination: 'https://example.com',
+>          permanent: false,
+>        },
 >  ]
 > }
 >```
 >
-> If you want this to be a temporary redirect you should add an additional line defining the permanent variable as false, for example:
->```
-> {
->  "redirects": [
->    {
->      "source": "/blog",
->      "destination": "https://example.com"
->      "permanent": false
->    }
->  ]
->}
->```
->
-> You can find more examples of many different types of redirects, as well as other variables you can set, you can find [here](https://vercel.com/docs/projects/project-configuration#redirects).
->
 > I hope i could help!
 >
 > Best Regards,
->
 > Max
+> Vercel Support Team
 
  <br />
 
@@ -186,9 +189,9 @@ If I have found specific solutions for specific environments or versions of fram
 >
 >  If you are using a Custom Domain that is assigned to a non-Production Branch, however, the header X-Robots-Tag: noindex will not be set.. You can find an example on how to do that via Edge Middleware [here](https://vercel.com/templates/next.js/edge-functions-add-header).
 >
->You can confirm whether this header is present on your site by running the below CURL command in your operating system’s terminal, replacing the domain as needed:
+> You can confirm whether this header is present on your site by running the below CURL command in your operating system’s terminal, replacing the domain as needed:
 > ```
-> curl -I https://yourdomain.com/
+> curl -I https://example.com/
 > ```
 >
 > If the header is present, you should see the following in the command output:
@@ -200,8 +203,8 @@ If I have found specific solutions for specific environments or versions of fram
 > If you have any further questions on this topic, please do not hesitate to contact use and wish you a great day!
 >
 > Best Regards,
->
 > Max
+> Vercel Support Team
 
  <br />
 
